@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # 1000 lines, 12 bits each
-numbers = File.read('day03-input.txt').split
+numbers = File.read('input.txt').split
 
 # Store in hash of hashes, where h[position][bit] is the count for that position & bit
 counts = {}

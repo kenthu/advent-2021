@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-input = File.read('day02-input.txt').split("\n")
+input = File.read('input.txt').split("\n")
 
 horizontal_position = 0
 depth = 0

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-input = File.read('day05-input.txt').split("\n")
+input = File.read('input.txt').split("\n")
 
 def horizontal?(segment)
   segment[:y1] == segment[:y2]

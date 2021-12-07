@@ -3,7 +3,7 @@
 
 BOARD_SIZE = 5
 
-input = File.read('day04-input.txt').split("\n")
+input = File.read('input.txt').split("\n")
 
 # Read in drawn numbers
 draws = input[0].split(',').map(&:to_i)
@@ -19,16 +19,17 @@ input[2..].each_slice(BOARD_SIZE + 1) do |lines|
 end
 raise unless boards.length == 100 && boards.last.length == BOARD_SIZE
 
+# @return Boolean whether or not the board was completed
 def handle_draw(draw, board)
   board.each do |line|
     line.each_with_index do |num, i|
       if draw == num
         line[i] = nil
-        return draw * board_score(board) if board_complete?(board)
+        return true if board_complete?(board)
       end
     end
   end
-  nil
+  false
 end
 
 def board_complete?(board)
@@ -42,13 +43,19 @@ def board_score(board)
   board.map { |line| line.compact.sum }.sum
 end
 
+last_to_win = nil
 draws.each do |draw|
-  boards.each do |board|
-    final_score = handle_draw(draw, board)
-    unless final_score.nil?
-      puts "Final score: #{final_score}"
-      exit
+  boards.delete_if do |board|
+    if handle_draw(draw, board)
+      last_to_win = board
+      true
+    else
+      false
     end
   end
+  if boards.empty?
+    puts "Final score: #{draw * board_score(last_to_win)}"
+    exit
+  end
 end
-# 50008
+# 17408

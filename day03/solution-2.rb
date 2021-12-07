@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # 1000 lines, 12 bits each
-numbers = File.read('day03-input.txt').split
+numbers = File.read('input.txt').split
 
 def find_rating(numbers, bit_selector)
   num_bits = numbers[0].length
